@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <h2>Yolo, think about it</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae numquam placeat sit totam ullam. Assumenda ipsam necessitatibus saepe? Assumenda atque delectus dignissimos exercitationem illo in ipsa quaerat quos rerum voluptatum?</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae numquam placeat sit totam ullam. Assumenda ipsam necessitatibus saepe? Assumenda atque delectus dignissimos exercitationem illo in ipsa quaerat quos rerum voluptatum?</p>
+    <p><a href="{{ path('idea_list') }}" title="View all ideas">Have a look at our ideas!</a></p>
+
+    <h3>Latest news from us!</h3>
+    <section>
+
+        {% for post in latestPosts %}
+        <article>
+            <h4>{{ post.title }}</h4>
+            <div>{{ post.content }}</div>
+            {# accède à l'objet Author qui est imbriqué dans les posts #}
+            <p>By: {{ post.author.fullname }}</p>
+        </article>
+        {% endfor %}
+    </section>
+{% endblock %}

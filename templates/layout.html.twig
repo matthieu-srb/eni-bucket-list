@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Bucket List{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="box">
+            <div class="container">
+                <h1>BucketList</h1>
+                <nav>
+                    <a href="{{ path('home') }}" title="Back for home">Home</a>
+                    <a href="{{ path('about_us') }}" title="About us">About us</a>
+                    <a href="{{ path('idea_list') }}" title="All ideas">All ideas</a>
+                    <a href="{{ path('idea_add') }}" title="Create your idea">Add</a>
+                    {% if app.user %}
+                        <a href="{{ path('app_logout') }}" title="Disconnect">Logout ({{ app.user.username }})</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" title="Connect">Login</a>
+                        <a href="{{ path('app_register') }}" title="Create your account">Register</a>
+                    {% endif %}
+                </nav>
+            </div>
+        </header>
+
+        {# pass an array argument to get the messages of those types  #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <main>
+            <div class="box container">
+                {% block main %}{% endblock %}
+            </div>
+        </main>
+        <footer class="box">
+            <div class="container">
+                {% if (is_granted("ROLE_ADMIN")) %}
+                <p><a href="{{ path('create_post') }}">Admins: Create a blog post</a></p>
+                {% endif %}
+                &copy; {{ "now"|date("Y") }} Bucket-list
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

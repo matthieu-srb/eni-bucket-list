@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <h2>Create a new post</h2>
+
+    <div id="create-post-form">
+        {{ form_start(postFormView) }}
+            {{ form_row(postFormView.title) }}
+            {{ form_row(postFormView.content) }}
+            {{ form_row(postFormView.author) }}
+            {{ form_row(postFormView.isFeatured) }}
+        {# form_end affiche aussi les champs qu'on a oublié d'afficher !! #}
+        {{ form_end(postFormView) }}
+    </div>
+
+{% endblock %}
+
+{% block title %}Create a post | {{ parent() }}{% endblock %}

@@ -13,4 +13,4 @@ php bin/console doctrine:database:create
 php bin/console doctrine:schema:update --force
 ```
 
-Puis naviguer vers : http://localhost/eni-bucket-list/public/"# eni-bucket-list" 
+Puis naviguer vers : http://localhost/eni-bucket-list/public/

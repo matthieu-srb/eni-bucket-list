@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <h2>All ideas</h2>
+
+    <section>
+        {% for idea in ideas %}
+            <article>
+                <a href="{{ path('idea_detail', {'id': idea.id}) }}" title="{{ idea.title }}">{{ idea.title|capitalize }} ({{ idea.category.name }})</a>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}
+
+{% block title %}
+Ideas | {{ parent() }}
+{% endblock %}
+
